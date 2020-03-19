@@ -23,22 +23,10 @@ public class Main {
 
         Path monFichier =  Paths.get("texte.txt");
         if (Files.exists(monFichier)) {
-            try {
-                Files.delete(monFichier);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            suppressionFichier(monFichier);
         }
-        try {
-            Files.createFile(monFichier);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            Files.write(monFichier,listeLignes,StandardOpenOption.APPEND);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        creerFichier(monFichier);
+        ecrireFichier(listeLignes, monFichier);
 
         System.out.println(compterMot(monFichier));
         List<String> ligneEcriture = new ArrayList<>();
@@ -51,25 +39,36 @@ public class Main {
         ligneEcriture.add("Total des mots = " + totalMots);
         Path secondFichier =  Paths.get("occurence.txt");
         if (Files.exists(secondFichier)) {
-            try {
-                Files.delete(secondFichier);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            suppressionFichier(secondFichier);
         }
-
-        try {
-            Files.createFile(secondFichier);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            Files.write(secondFichier,ligneEcriture, StandardOpenOption.APPEND);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        creerFichier(secondFichier);
+        ecrireFichier(ligneEcriture, secondFichier);
 
         System.out.println(motPlusPresent(monFichier));
+    }
+
+    private static void ecrireFichier(List<String> listeLignes, Path monFichier) {
+        try {
+            Files.write(monFichier, listeLignes, StandardOpenOption.APPEND);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void creerFichier(Path monFichier) {
+        try {
+            Files.createFile(monFichier);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void suppressionFichier(Path monFichier) {
+        try {
+            Files.delete(monFichier);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     static Map<String, Integer> compterMot(Path fichier) {
