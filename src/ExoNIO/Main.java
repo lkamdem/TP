@@ -13,11 +13,11 @@ import java.util.Map;
 public class Main {
     public static void main(String[] args) {
         List<String> listeLignes = new ArrayList<>();
-        listeLignes.add("premiere ligne de ma chanson préféré, premier couplet.");
-        listeLignes.add("seconde ligne de ma chanson préféré, premier couplet.");
-        listeLignes.add("troisième ligne de ma chanson préféré, premier couplet.");
-        listeLignes.add("refrain ma chanson préféré.");
-        listeLignes.add("première ligne de ma chanson préféré, second couplet.");
+        listeLignes.add("Premiere ligne de ma chanson préféré, premier couplet.");
+        listeLignes.add("Seconde ligne de ma chanson préféré, premier couplet.");
+        listeLignes.add("Troisième ligne de ma chanson préféré, premier couplet.");
+        listeLignes.add("Refrain ma chanson préféré.");
+        listeLignes.add("Première ligne de ma chanson préféré, second couplet.");
 //        System.out.println(listeLignes);
 
 
@@ -91,7 +91,7 @@ public class Main {
         }
 //
         for (String ligne : lecture) {
-            for (String mot : ligne.split(" ")) {
+            for (String mot : ligne.toLowerCase().split(" ")) {
                 if (mot.endsWith(",") || (mot.endsWith("."))) {
                     mot=mot.substring(0,mot.length()-1);
                 }
